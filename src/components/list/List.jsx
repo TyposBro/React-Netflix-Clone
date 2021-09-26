@@ -54,8 +54,8 @@ export default List;
 
 const renderListItem = () => {
   const LI = [];
-  for (let i = 1; i < 10; i++) {
-    LI.push(<ListItem img={i} />);
+  for (let i = 0; i < 9; i++) {
+    LI.push(<ListItem img={i} index={i} />);
   }
 
   return LI;

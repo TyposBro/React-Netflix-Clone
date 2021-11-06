@@ -7,7 +7,8 @@ import { useRef, useState } from "react";
 
 import "./List.scss";
 
-const List = () => {
+const List = ({ res }) => {
+  console.log(res);
   const [slideNumber, setSlideNumber] = useState(0);
   const listRef = useRef();
 

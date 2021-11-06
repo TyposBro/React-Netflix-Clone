@@ -1,5 +1,6 @@
 .featured {
-  height: 90vh;
+  height: 76vh;
+
   position: relative;
 
   .category {
@@ -11,6 +12,7 @@
     color: #fff;
     display: flex;
     align-items: center;
+    z-index: 2;
     select {
       cursor: pointer;
       background-color: var(--main-color);
@@ -18,7 +20,6 @@
       color: white;
       margin-left: 20px;
       padding: 5px;
-      // border-radius: 5px;
       position: relative;
       top: 3px;
     }
@@ -43,7 +44,7 @@
     }
 
     .desc {
-      margin: 20px 0;
+      margin: 10px 0;
     }
 
     .buttons {

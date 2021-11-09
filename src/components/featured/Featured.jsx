@@ -1,10 +1,33 @@
 import "./Featured.scss";
+import Axios from "utils/axios";
 
 import { getRandomInt } from "utils/random";
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import { useEffect, useState } from "react";
 const bg = getRandomInt(1, 9);
 
 const Featured = ({ type }) => {
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const { data } = await Axios.get("/movies/random", {
+          headers: {
+            token:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODViZmQ5Njg3NTA3OWUxYTg4YjBiNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjM4NDMzOSwiZXhwIjoxNjM2NDcwNzM5fQ.6F0gB20gFQkHou9d97MjhwkDtn6LSQ5C3ztQPijbxSo",
+          },
+        });
+        const desc = data.desc.slice(0, 150);
+
+        setContent({ ...data, desc });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getRandomContent();
+  }, []);
+
   return (
     <div className="featured">
       {type && (
@@ -29,25 +52,22 @@ const Featured = ({ type }) => {
         </div>
       )}
       <img src={`/images/background/${bg}.jpg`} alt="" />
-      <div className="info">
-        <img src={`/images/background/${bg + 1}.jpg`} alt="" />
-        <span className="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ut
-          qui quasi saepe magni? Suscipit nostrum, vero ut asperiores fugit
-          dolorem blanditiis veniam tempore modi possimus sapiente soluta
-          cupiditate ea.
-        </span>
-        <div className="buttons">
-          <button className="play">
-            <PlayArrow />
-            <span>Play</span>
-          </button>
-          <button className="more">
-            <InfoOutlined />
-            <span>Info</span>
-          </button>
+      {content && (
+        <div className="info">
+          <img src={content.img} alt="" />
+          <span className="desc">{content.desc}...</span>
+          <div className="buttons">
+            <button className="play">
+              <PlayArrow />
+              <span>Play</span>
+            </button>
+            <button className="more">
+              <InfoOutlined />
+              <span>Info</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

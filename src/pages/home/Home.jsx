@@ -20,7 +20,6 @@ const Home = ({ type }) => {
           headers: { token: "" },
         });
         setLists(res.data);
-        console.log(res);
       } catch (error) {
         console.log(error);
       }

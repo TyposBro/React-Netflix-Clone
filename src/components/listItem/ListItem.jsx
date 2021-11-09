@@ -24,7 +24,6 @@ const ListItem = ({ id, i }) => {
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODViZmQ5Njg3NTA3OWUxYTg4YjBiNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjM4NDMzOSwiZXhwIjoxNjM2NDcwNzM5fQ.6F0gB20gFQkHou9d97MjhwkDtn6LSQ5C3ztQPijbxSo",
           },
         });
-        console.log(data);
         setMovie(data);
       } catch (error) {
         console.log(error);
@@ -34,7 +33,8 @@ const ListItem = ({ id, i }) => {
   }, [id]);
   return (
     <Link
-      to={{ pathname: "/watch", movie }}
+      to={{ pathname: `/watch` }}
+      state={{ movie }}
       className="listItem"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

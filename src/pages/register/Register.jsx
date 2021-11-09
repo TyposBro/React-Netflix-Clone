@@ -10,7 +10,7 @@ const Register = () => {
 
   const handleStart = () => {
     setEmail(emailRef.current.value);
-    console.log(emailRef.current.value);
+    // console.log(emailRef.current.value);
   };
 
   const handleFinish = () => {

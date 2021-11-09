@@ -1,29 +1,51 @@
+// Core
+import { useEffect, useState } from "react";
+import axios from "utils/axios";
+import { Link } from "react-router-dom";
+// UI
 import {
   Add,
   PlayArrow,
   ThumbDownOutlined,
   ThumbUpAltOutlined,
 } from "@material-ui/icons";
-import { useState } from "react";
+// Custom
 import "./ListItem.scss";
 
-const ListItem = ({ img, index }) => {
+const ListItem = ({ id, i }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const trailer =
-    "https://movietrailers.apple.com/movies/pixar/turning-red/turning-red-trailer-1_i320.m4v";
+  const [movie, setMovie] = useState(null);
+  useEffect(() => {
+    const getItem = async () => {
+      try {
+        const { data } = await axios.get(`/movies/find/${id}`, {
+          headers: {
+            token:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODViZmQ5Njg3NTA3OWUxYTg4YjBiNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjM4NDMzOSwiZXhwIjoxNjM2NDcwNzM5fQ.6F0gB20gFQkHou9d97MjhwkDtn6LSQ5C3ztQPijbxSo",
+          },
+        });
+        console.log(data);
+        setMovie(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getItem();
+  }, [id]);
   return (
-    <div
+    <Link
+      to={{ pathname: "/watch", movie }}
       className="listItem"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ left: isHovered && index * 231 - 50 }}
+      style={{ left: isHovered && i * 231 - 50 }}
     >
-      <img src={`images/background/${img}.jpg`} alt="" />
-      {isHovered && (
+      {movie && <img src={`${movie.imgSmall}`} alt="" />}
+      {isHovered && movie && (
         <>
           <video
             className="video"
-            src="videos/01.mp4"
+            src={`${movie.video}`}
             autoPlay={true}
             loop={true}
           ></video>
@@ -37,18 +59,15 @@ const ListItem = ({ img, index }) => {
 
             <div className="moreInfo">
               <span>1hour 35min</span>
-              <span className="limit">+16</span>
-              <span>1999</span>
+              <span className="limit">+{movie.limit}</span>
+              <span>{movie.year}</span>
             </div>
-            <div className="desc">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-              nemo minus libero cum eos numquam.
-            </div>
-            <div className="genre">Action</div>
+            <div className="desc">{movie.desc}</div>
+            <div className="genre">{movie.genre}</div>
           </div>
         </>
       )}
-    </div>
+    </Link>
   );
 };
 

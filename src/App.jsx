@@ -6,16 +6,17 @@ import Watch from "pages/watch/Watch";
 import { Routes, Route, Navigate } from "react-router-dom";
 function App() {
   const user = true;
+
   return (
     <Routes>
       <Route
         path="/"
         element={user ? <Home /> : <Navigate replace to="/register" />}
       />
-      <Route
-        path="/login"
+      <Route path="/login"
         element={user ? <Navigate replace to="/" /> : <Login />}
       />
+
       <Route
         path="/register"
         element={user ? <Navigate replace to="/" /> : <Register />}

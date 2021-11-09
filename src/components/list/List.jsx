@@ -1,14 +1,12 @@
+import { useRef, useState } from "react";
 import {
   ArrowBackIosOutlined,
   ArrowForwardIosOutlined,
 } from "@material-ui/icons";
 import ListItem from "components/listItem/ListItem";
-import { useRef, useState } from "react";
-
 import "./List.scss";
 
-const List = ({ res }) => {
-  console.log(res);
+const List = ({ list }) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const listRef = useRef();
 
@@ -32,7 +30,7 @@ const List = ({ res }) => {
   };
   return (
     <div className="list">
-      <span className="listTitle">Continue to watch</span>
+      <span className="listTitle">{list.title}</span>
       <div className="wrapper">
         <ArrowBackIosOutlined
           className="sliderArrow left"
@@ -40,7 +38,10 @@ const List = ({ res }) => {
           style={slideNumber === 0 ? { visibility: "hidden" } : {}}
         />
         <div className="container" ref={listRef}>
-          {renderListItem()}
+          {list &&
+            list.content.map((movieId, i) => {
+              return <ListItem key={movieId} i={i} id={movieId} />;
+            })}
         </div>
         <ArrowForwardIosOutlined
           className="sliderArrow right"
@@ -52,12 +53,3 @@ const List = ({ res }) => {
 };
 
 export default List;
-
-const renderListItem = () => {
-  const LI = [];
-  for (let i = 0; i < 9; i++) {
-    LI.push(<ListItem img={i} index={i} />);
-  }
-
-  return LI;
-};

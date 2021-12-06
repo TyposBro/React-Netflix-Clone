@@ -44,19 +44,20 @@ const Featured = ({ type, setGenre }) => {
             id="genre"
           >
             <option> Genre </option>
-            <option value="adventure">Adventure</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="historical">Historical</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-fi</option>
-            <option value="thriller">Thriller</option>
-            <option value="western">Western</option>
-            <option value="animation">Animation</option>
-            <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Anime">Anime</option>
+
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Historical">Historical</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Western">Western</option>
+            <option value="Kdrama">K-Drama</option>
+            <option value="Documentary">Documentary</option>
           </select>
         </div>
       )}

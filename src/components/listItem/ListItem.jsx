@@ -22,10 +22,11 @@ const ListItem = ({ id, i }) => {
       try {
         const { data } = await axios.get(`/movies/find/${id}`, {
           headers: {
-            token: user.token,
+            token: user.token || null,
           },
         });
-        setMovie(data);
+        const desc = data.desc.slice(0, 150);
+        setMovie({ ...data, desc });
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +42,7 @@ const ListItem = ({ id, i }) => {
       onMouseLeave={() => setIsHovered(false)}
       style={{ left: isHovered && i * 231 - 50 }}
     >
-      {movie && <img src={`${movie.img}`} alt="" />}
+      {movie && <img className="poster" src={`${movie.img}`} alt="" />}
       {isHovered && movie && (
         <>
           <video
@@ -59,12 +60,11 @@ const ListItem = ({ id, i }) => {
             </div>
 
             <div className="moreInfo">
-              {movie.duration} min
-              {/* <span>{movie.duration} min</span> */}
+              <span>{movie.duration}min</span>
               <span className="limit">+{movie.limit}</span>
               <span>{movie.year}</span>
             </div>
-            <div className="desc">{movie.desc}</div>
+            <div className="desc">{movie.desc}...</div>
             <div className="genre">{movie.genre}</div>
           </div>
         </>

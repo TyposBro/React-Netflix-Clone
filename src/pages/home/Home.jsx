@@ -17,7 +17,6 @@ const Home = ({ type }) => {
             type,
             genre,
           },
-          headers: { token: "" },
         });
         setLists(res.data);
       } catch (error) {

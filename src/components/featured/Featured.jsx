@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const bg = getRandomInt(1, 9);
 
 const Featured = ({ type }) => {
-  const [content, setContent] = useState();
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
     const getRandomContent = async () => {
@@ -15,7 +15,7 @@ const Featured = ({ type }) => {
         const { data } = await Axios.get("/movies/random", {
           headers: {
             token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODViZmQ5Njg3NTA3OWUxYTg4YjBiNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjM4NDMzOSwiZXhwIjoxNjM2NDcwNzM5fQ.6F0gB20gFQkHou9d97MjhwkDtn6LSQ5C3ztQPijbxSo",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODViZmQ5Njg3NTA3OWUxYTg4YjBiNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjc4ODg1MCwiZXhwIjoxNjM2ODc1MjUwfQ.3gpHI7hc96drB6JqVudWiMIwQOZeCo38UqxU0gyImMM",
           },
         });
         const desc = data.desc.slice(0, 150);

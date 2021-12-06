@@ -36,6 +36,8 @@
       display: flex;
       flex-direction: column;
       padding: 5px;
+      text-decoration: none !important;
+
       .icons {
         display: flex;
         margin-bottom: 10px;
@@ -56,6 +58,7 @@
         font-size: 14px;
         font-weight: 600;
         color: grey;
+        text-decoration: none !important;
 
         .limit {
           border: 1px solid grey;
@@ -66,6 +69,7 @@
       .desc {
         font-size: 13px;
         margin-bottom: 10px;
+        text-decoration: none !important;
       }
       .genre {
         font-size: 13px;

@@ -1,5 +1,5 @@
 // Core
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "utils/axios";
 import { Link } from "react-router-dom";
 // UI
@@ -11,17 +11,19 @@ import {
 } from "@material-ui/icons";
 // Custom
 import "./ListItem.scss";
+import AuthContext from "context/auth/AuthContext";
 
 const ListItem = ({ id, i }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState(null);
+  const { user, dispatch } = useContext(AuthContext);
+
   useEffect(() => {
     const getItem = async () => {
       try {
         const { data } = await axios.get(`/movies/find/${id}`, {
           headers: {
-            token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODViZmQ5Njg3NTA3OWUxYTg4YjBiNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjc4ODg1MCwiZXhwIjoxNjM2ODc1MjUwfQ.3gpHI7hc96drB6JqVudWiMIwQOZeCo38UqxU0gyImMM",
+            token: user.token,
           },
         });
         setMovie(data);
@@ -30,7 +32,7 @@ const ListItem = ({ id, i }) => {
       }
     };
     getItem();
-  }, [id]);
+  }, [id, user.token]);
   return (
     <Link
       to={{ pathname: `/watch` }}
@@ -40,12 +42,12 @@ const ListItem = ({ id, i }) => {
       onMouseLeave={() => setIsHovered(false)}
       style={{ left: isHovered && i * 231 - 50 }}
     >
-      {movie && <img src={`${movie.imgSmall}`} alt="" />}
+      {movie && <img src={`${movie.img}`} alt="" />}
       {isHovered && movie && (
         <>
           <video
             className="video"
-            src={`${movie.video}`}
+            src={`${movie.trailer}`}
             autoPlay={true}
             loop={true}
           ></video>
@@ -58,7 +60,8 @@ const ListItem = ({ id, i }) => {
             </div>
 
             <div className="moreInfo">
-              <span>1hour 35min</span>
+              {movie.duration} min
+              {/* <span>{movie.duration} min</span> */}
               <span className="limit">+{movie.limit}</span>
               <span>{movie.year}</span>
             </div>

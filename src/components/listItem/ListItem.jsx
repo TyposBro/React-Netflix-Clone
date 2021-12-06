@@ -3,12 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import axios from "utils/axios";
 import { Link } from "react-router-dom";
 // UI
-import {
-  Add,
-  PlayArrow,
-  ThumbDownOutlined,
-  ThumbUpAltOutlined,
-} from "@material-ui/icons";
+import Add from "@mui/icons-material/Add";
+import PlayArrow from "@mui/icons-material/PlayArrow";
+import ThumbDownOutlined from "@mui/icons-material/ThumbDownOutlined";
+import ThumbUpAltOutlined from "@mui/icons-material/ThumbUpOutlined";
+
 // Custom
 import "./ListItem.scss";
 import AuthContext from "context/auth/AuthContext";

@@ -2,7 +2,8 @@ import "./Featured.scss";
 import Axios from "utils/axios";
 
 import { getRandomInt } from "utils/random";
-import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "context/auth/AuthContext";
 const bg = getRandomInt(1, 9);
@@ -66,11 +67,11 @@ const Featured = ({ type, setGenre }) => {
           <span className="desc">{content.desc}...</span>
           <div className="buttons">
             <button className="play">
-              <PlayArrow />
+              <PlayArrowIcon />
               <span>Play</span>
             </button>
             <button className="more">
-              <InfoOutlined />
+              <InfoOutlinedIcon />
               <span>Info</span>
             </button>
           </div>

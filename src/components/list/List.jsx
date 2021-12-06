@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
-import {
-  ArrowBackIosOutlined,
-  ArrowForwardIosOutlined,
-} from "@material-ui/icons";
+import ArrowBackIosOutlined from "@mui/icons-material/ArrowBackIosOutlined";
+import ArrowForwardIosOutlined from "@mui/icons-material/ArrowForwardOutlined";
 import ListItem from "components/listItem/ListItem";
 import "./List.scss";
 

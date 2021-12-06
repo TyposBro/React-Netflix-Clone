@@ -1,7 +1,7 @@
 // Core
 import { useLocation, useNavigate } from "react-router-dom";
 // UI
-import { ArrowBackOutlined } from "@material-ui/icons";
+import ArrowBackOutlined from "@mui/icons-material/ArrowBackOutlined";
 // Custom
 import "./Watch.scss";
 

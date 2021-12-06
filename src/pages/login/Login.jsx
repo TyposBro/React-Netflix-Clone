@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import AuthContext from "context/auth/AuthContext";
 import { login } from "context/auth/AuthAPI";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
@@ -65,7 +65,10 @@ const Login = () => {
             Sign In
           </button>
           <span>
-            New to Netflix? <strong>Sign up now.</strong>
+            New to Netflix?{" "}
+            <Link to="/register">
+              <strong>Sign up now.</strong>
+            </Link>
           </span>
 
           <small>

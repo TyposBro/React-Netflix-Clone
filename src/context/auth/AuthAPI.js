@@ -27,7 +27,7 @@ export const register = async (user, dispatch) => {
   dispatch(registerStart);
   try {
     const { data } = await axios.post("/auth/register", user);
-    dispatch(registerSuccess(user));
+    dispatch(registerSuccess(data));
     return true;
   } catch (error) {
     dispatch(registerError());

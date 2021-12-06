@@ -16,9 +16,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      z-index: 999;
 
       .logo {
         height: 40px;
+        z-index: 999;
+        cursor: pointer;
       }
       .loginButton {
         background-color: red;
@@ -29,6 +32,11 @@
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
+        z-index: 999;
+        a {
+          text-decoration: none;
+          color: white;
+        }
       }
     }
   }

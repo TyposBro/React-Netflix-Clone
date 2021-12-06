@@ -1,22 +1,11 @@
-import { useRef, useState } from "react";
+import { register } from "context/auth/AuthAPI";
+import AuthContext from "context/auth/AuthContext";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import "./Register.scss";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const emailRef = useRef();
-  const passwordRef = useRef();
-
-  const handleStart = () => {
-    setEmail(emailRef.current.value);
-    // console.log(emailRef.current.value);
-  };
-
-  const handleFinish = () => {
-    setPassword(passwordRef.current.value);
-  };
-
   return (
     <div className="register">
       <div className="top">
@@ -26,7 +15,10 @@ const Register = () => {
             alt="Netflix Logo"
             className="logo"
           />
-          <button className="loginButton">Sign In</button>
+
+          <button className="loginButton">
+            <Link to="/login">Sign In </Link>
+          </button>
         </div>
       </div>
 
@@ -36,24 +28,80 @@ const Register = () => {
         <p>
           Ready to watch? Enter your email to create or restart your membership.
         </p>
-        {!email ? (
-          <div className="input">
-            <input type="email" ref={emailRef} placeholder="email adress" />
-            <button className="registerButton" onClick={handleStart}>
-              Get started
-            </button>
-          </div>
-        ) : (
-          <form className="input">
-            <input type="password" ref={passwordRef} placeholder="password" />
-            <button className="registerButton" onClick={handleFinish}>
-              Start
-            </button>
-          </form>
-        )}
+
+        {Form()}
       </div>
     </div>
   );
 };
 
 export default Register;
+
+const Form = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({ username: "", email: "", password: "" });
+  const [step, setStep] = useState(0);
+  const { dispatch } = useContext(AuthContext);
+
+  const handleChange = ({ target }) => {
+    setUser({ ...user, [target.name]: target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await register(user, dispatch);
+
+    if (res) {
+      navigate("/", { replace: true });
+    } else {
+      navigate("/register", { replace: true });
+    }
+  };
+
+  if (step === 0) {
+    return (
+      <div className="input">
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          value={user.email}
+          placeholder="email adress"
+        />
+        <button className="registerButton" onClick={() => setStep(step + 1)}>
+          Get started
+        </button>
+      </div>
+    );
+  } else if (step === 1) {
+    return (
+      <div className="input">
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
+          placeholder="choose a username"
+        />
+        <button className="registerButton" onClick={() => setStep(step + 1)}>
+          Next
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <form className="input">
+        <input
+          type="password"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
+          placeholder="password"
+        />
+        <button className="registerButton" onClick={handleSubmit}>
+          Start
+        </button>
+      </form>
+    );
+  }
+};

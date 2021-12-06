@@ -1,6 +1,7 @@
 import { AUTH } from "utils/context_enum";
 
 const authReducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case AUTH.LOGIN.START:
       return { user: null, isFetching: true, error: false };

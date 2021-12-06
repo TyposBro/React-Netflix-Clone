@@ -1,6 +1,34 @@
+import { useContext, useState } from "react";
+import AuthContext from "context/auth/AuthContext";
+import { login } from "context/auth/AuthAPI";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
+  const [user, setUser] = useState({});
+  const { isFetching, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleChange = ({ target }) => {
+    console.log(user);
+    setUser({ ...user, [target.name]: target.value });
+    console.log(user);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
+    if (user.hasOwnProperty("username") && user.hasOwnProperty("password")) {
+      const res = await login(user, dispatch);
+      if (res) {
+        navigate("/", { replace: true });
+      } else {
+        navigate("/login", { replace: true });
+      }
+    } else {
+      window.alert("Please fill in all of the fields");
+    }
+  };
   return (
     <div className="login">
       <div className="top">
@@ -16,9 +44,26 @@ const Login = () => {
       <div className="container">
         <form>
           <h1>Sign In</h1>
-          <input type="email" placeholder="Email or phone number" />
-          <input type="password" placeholder="Password" />
-          <button className="loginButton">Sign In</button>
+          <input
+            type="email"
+            name="username"
+            onChange={handleChange}
+            placeholder="username or email"
+          />
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            placeholder="Password"
+            autoComplete="current-password"
+          />
+          <button
+            disabled={isFetching}
+            onClick={handleSubmit}
+            className="loginButton"
+          >
+            Sign In
+          </button>
           <span>
             New to Netflix? <strong>Sign up now.</strong>
           </span>

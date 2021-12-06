@@ -1,11 +1,13 @@
 import "App.scss";
-import Home from "pages/home/Home";
-import Login from "pages/login/Login";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
 import Register from "pages/register/Register";
 import Watch from "pages/watch/Watch";
 import { Routes, Route, Navigate } from "react-router-dom";
+import AuthContext from "context/auth/AuthContext";
+import { useContext } from "react";
 function App() {
-  const user = true;
+  const { user } = useContext(AuthContext);
 
   return (
     <Routes>

@@ -6,6 +6,9 @@ import "./List.scss";
 
 const List = ({ list }) => {
   const [slideNumber, setSlideNumber] = useState(0);
+  const sub = window.innerWidth / 230;
+  const listNum = list.content.length;
+
   const listRef = useRef();
 
   const handleClick = (dir) => {
@@ -16,7 +19,7 @@ const List = ({ list }) => {
       listRef.current.style.transform = `translateX(${distance + 230}px)`;
       return;
     }
-    if (dir === "right" && slideNumber < 4) {
+    if (dir === "right" && slideNumber < listNum - sub) {
       setSlideNumber(slideNumber + 1);
       listRef.current.style.transform = `translateX(${distance - 230}px)`;
       return;

@@ -6,11 +6,10 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "context/auth/AuthContext";
-const bg = getRandomInt(1, 9);
+const bg = getRandomInt(0, 6);
 
 const Featured = ({ type, setGenre }) => {
   const { user } = useContext(AuthContext);
-  console.log("featured:", user);
   const [content, setContent] = useState(null);
 
   useEffect(() => {

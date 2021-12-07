@@ -10,14 +10,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = ({ target }) => {
-    console.log(user);
     setUser({ ...user, [target.name]: target.value });
-    console.log(user);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+
     if (user.hasOwnProperty("username") && user.hasOwnProperty("password")) {
       const res = await login(user, dispatch);
       if (res) {

@@ -34,19 +34,19 @@ const Navbar = () => {
           </Link>
 
           <Link to="/series" className="link">
-            <span>Series</span>
+            <span className="main">Series</span>
           </Link>
           <Link to="/movies" className="link">
-            <span>Movies</span>
+            <span className="main">Movies</span>
           </Link>
 
           <span>New and Popular</span>
           <span>My List</span>
         </div>
         <div className="right">
-          <Search className="icon" />
-          <span>{user.info.username}</span>
-          <Notifications className="icon" />
+          <Search className="icon search" />
+          <span className="username">{user.info.username}</span>
+          <Notifications className="icon notification" />
           <img src={user.info.avatar} alt="avatar" />
           <div className="profile">
             <ArrowDropDown className="icon" />

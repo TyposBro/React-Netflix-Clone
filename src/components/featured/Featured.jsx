@@ -35,7 +35,7 @@ const Featured = ({ type, setGenre }) => {
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{type === "movies" ? "Movies" : "Series"}</span>
+          <span>{type === "Movies" ? "Movies" : "Series"}</span>
           <select
             onChange={({ target }) => {
               setGenre(target.value);

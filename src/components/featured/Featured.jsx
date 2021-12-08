@@ -6,11 +6,18 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "context/auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 const bg = getRandomInt(0, 6);
 
 const Featured = ({ type, setGenre }) => {
   const { user } = useContext(AuthContext);
   const [content, setContent] = useState(null);
+  const navigate = useNavigate();
+
+  const handlePlay = () => {
+    navigate("/watch", { state: { movie: content } });
+    // console.log(content);
+  };
 
   useEffect(() => {
     const getRandomContent = async () => {
@@ -66,7 +73,7 @@ const Featured = ({ type, setGenre }) => {
           <img src={content.img} alt="" />
           <span className="desc">{content.desc}...</span>
           <div className="buttons">
-            <button className="play">
+            <button onClick={handlePlay} className="play">
               <PlayArrowIcon />
               <span>Play</span>
             </button>

@@ -1,3 +1,4 @@
+@import "../../App.scss";
 .register {
   width: 100vw;
   height: 100vh;
@@ -17,6 +18,12 @@
       align-items: center;
       justify-content: space-between;
       z-index: 999;
+      @include mobile {
+        padding: 20px 20px;
+      }
+      @include tablet {
+        padding: 20px 20px;
+      }
 
       .logo {
         height: 40px;
@@ -55,16 +62,43 @@
 
     h1 {
       font-size: 50px;
+
+      @include mobile {
+        text-align: center;
+        font-size: 40px;
+        margin-top: -100px;
+      }
+      @include tablet {
+        text-align: center;
+        font-size: 40px;
+        margin-top: -100px;
+      }
     }
     h2 {
       margin: 20px;
+      @include mobile {
+        text-align: center;
+        font-size: 25px;
+      }
+      @include tablet {
+        text-align: center;
+        font-size: 25px;
+      }
     }
     p {
       font-size: 20px;
+      @include mobile {
+        font-size: 10px;
+        text-align: center;
+      }
+      @include tablet {
+        font-size: 10px;
+        text-align: center;
+      }
     }
 
     .input {
-      width: 50%;
+      width: 40%;
       background-color: white;
       display: flex;
       align-items: center;
@@ -73,11 +107,24 @@
       height: 50px;
       border-radius: 5px;
 
+      @include mobile {
+        width: auto;
+      }
+      @include tablet {
+        width: 400px;
+      }
       input {
         flex: 9;
         height: 100%;
         border: none;
         padding: 0 10px;
+
+        @include mobile {
+          flex: 7;
+        }
+        @include tablet {
+          flex: 8;
+        }
       }
       .registerButton {
         flex: 3;
@@ -87,6 +134,14 @@
         color: white;
         font-size: 22px;
         cursor: pointer;
+        @include mobile {
+          font-size: 15px;
+          flex: 5;
+        }
+        @include tablet {
+          font-size: 15px;
+          flex: 4;
+        }
       }
     }
   }

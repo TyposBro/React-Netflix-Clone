@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 .watch {
   width: 100vw;
   height: 100vh;
@@ -10,10 +12,18 @@
     top: 10px;
     color: #fff;
     cursor: pointer;
+    z-index: 999;
   }
   .video {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
+
+    @include mobile {
+      height: auto;
+    }
+    @include tablet {
+      height: auto;
+    }
   }
 }

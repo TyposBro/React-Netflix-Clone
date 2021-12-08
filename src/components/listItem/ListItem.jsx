@@ -15,7 +15,7 @@ import AuthContext from "context/auth/AuthContext";
 const ListItem = ({ id, i }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState(null);
-  const { user, dispatch } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const getItem = async () => {

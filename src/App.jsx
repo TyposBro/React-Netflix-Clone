@@ -1,3 +1,7 @@
+// TODO: Settings Page
+// TODO: LATER My List Page
+// TODO: Admin-CRM Resize Img on Upload
+
 import "App.scss";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
